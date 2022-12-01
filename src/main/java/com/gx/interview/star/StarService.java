@@ -1,6 +1,10 @@
 package com.gx.interview.star;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A class to work with {@link Star} collections.
@@ -15,8 +19,14 @@ public class StarService {
      * @throws RuntimeException
      */
     public boolean areNamesUnique(List<Star> stars) {
-
-        throw new RuntimeException("Not implemented");
+        for (int i = 0; i < stars.size(); i++) {
+            for (int j = i+1; j < stars.size(); j++) {
+                if(stars.get(i).getName().equals(stars.get(j).getName())){
+                    return false;
+                };
+            }
+        }
+        return true;
     }
 
     /**
@@ -28,8 +38,7 @@ public class StarService {
      * @throws RuntimeException
      */
     public List<Star> findClosestStars(List<Star> stars, int size) {
-
-        throw new RuntimeException("Not implemented");
+        return stars.stream().sorted(Comparator.comparing(Star::getDistance)).limit(size).collect(Collectors.toList());
     }
 
     /**
@@ -41,7 +50,6 @@ public class StarService {
      * @throws RuntimeException
      */
     public List<Star> filterByRegExpr(List<Star> stars, String regExpr) {
-
-        throw new RuntimeException("Not implemented");
+        return stars.stream().filter(s -> s.getName().matches(regExpr)).collect(Collectors.toList());
     }
 }

@@ -42,9 +42,9 @@ public class StarServiceTest {
     public void testTop3() throws IOException {
         List<Star> closestStars = new StarService().findClosestStars(testStars, 3);
         assertEquals(3, closestStars.size());
-        assertEquals(new Star("STAR_1", 1l), closestStars.get(0));
-        assertEquals(new Star("STAR_2", 2l), closestStars.get(1));
-        assertEquals(new Star("STAR_3", 3l), closestStars.get(2));
+        assertEquals(1l, closestStars.get(0).getDistance());
+        assertEquals(2l, closestStars.get(1).getDistance());
+        assertEquals(3l, closestStars.get(2).getDistance());
     }
 
     @Test
